@@ -3,21 +3,26 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Response } from '@angular/http';
 import { Post } from './post';
+import { Comment } from './comment';
 
 @Injectable()
 export class PostService {
 
-  private postServiceURI: string = 'http://localhost:4000';
+  private postServiceURI: string = 'http://jsonplaceholder.typicode.com';
 
    constructor(private http: HttpClient) {}
 
    // get all posts
    getAllPosts(): Observable<Post[]> {
-     let url = `${this.postServiceURI}`;
+     let url = `${this.postServiceURI}/posts`;
 
      return this.http.get<Post[]>(url);
    }
 
    // get comments based on the index
-   getCommentsForPost(index: number): Observable<Comment[]> {}
+   getCommentsForPost(index: number): Observable<Comment[]> {
+     let url = `${this.postServiceURI}/comments`;
+
+     return this.http.get<Comment[]>(url);
+   }
 }

@@ -8,28 +8,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var PostListComponent = /** @class */ (function () {
+var post_service_1 = require("./post.service");
+var PostListComponent = (function () {
     function PostListComponent(postService) {
         this.postService = postService;
         this.commentsFound = new core_1.EventEmitter();
     }
-    PostListComponent.prototype.ngOnInit = function () { };
+    PostListComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.postService.getAllPosts().subscribe(function (data) { return _this.posts = data; });
+    };
     PostListComponent.prototype.getComments = function (index) { };
     PostListComponent.prototype.printComments = function (comments) { };
-    __decorate([
-        core_1.Output(),
-        __metadata("design:type", Object)
-    ], PostListComponent.prototype, "commentsFound", void 0);
-    PostListComponent = __decorate([
-        core_1.Component({
-            selector: 'post-list',
-            templateUrl: './post-list.component.html'
-        }),
-        __metadata("design:paramtypes", [Object])
-    ], PostListComponent);
     return PostListComponent;
 }());
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], PostListComponent.prototype, "commentsFound", void 0);
+PostListComponent = __decorate([
+    core_1.Component({
+        selector: 'post-list',
+        templateUrl: './post-list.component.html'
+    }),
+    __metadata("design:paramtypes", [post_service_1.PostService])
+], PostListComponent);
 exports.PostListComponent = PostListComponent;
 //# sourceMappingURL=post-list.component.js.map

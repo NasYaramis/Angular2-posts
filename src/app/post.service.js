@@ -8,22 +8,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/common/http");
-var PostService = /** @class */ (function () {
+var PostService = (function () {
     function PostService(http) {
         this.http = http;
+        this.postServiceURI = 'http://jsonplaceholder.typicode.com';
     }
     // get all posts
-    PostService.prototype.getAllPosts = function () { };
+    PostService.prototype.getAllPosts = function () {
+        var url = this.postServiceURI + "/posts";
+        return this.http.get(url);
+    };
     // get comments based on the index
-    PostService.prototype.getCommentsForPost = function (index) { };
-    PostService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.HttpClient])
-    ], PostService);
+    PostService.prototype.getCommentsForPost = function (index) {
+        var url = this.postServiceURI + "/comments";
+        return this.http.get(url);
+    };
     return PostService;
 }());
+PostService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.HttpClient])
+], PostService);
 exports.PostService = PostService;
 //# sourceMappingURL=post.service.js.map
