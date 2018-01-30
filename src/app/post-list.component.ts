@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 
 import { Post } from './post';
+import { Comment } from './comment';
 import { PostService } from './post.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { PostService } from './post.service';
 
 export class PostListComponent  {
   posts: Post[];
+  comments: Comment[];
 
    @Output() commentsFound = new EventEmitter();
 
@@ -19,7 +21,13 @@ export class PostListComponent  {
      this.postService.getAllPosts().subscribe(data => this.posts = data);
    }
 
-   getComments(index: number): void {}
+   getComments(index: number): void {
+     this.postService.getCommentsForPost(index).subscribe(data => this.comments = data);
+     console.log(index);
+     console.log(this.comments);
+   }
 
-   printComments(comments: Comment[]): void {}
+   printComments(comments: Comment[]): void {
+     //this.commentsFound.emit(this.comments);
+   }
 }

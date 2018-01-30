@@ -19,8 +19,15 @@ var PostListComponent = (function () {
         var _this = this;
         this.postService.getAllPosts().subscribe(function (data) { return _this.posts = data; });
     };
-    PostListComponent.prototype.getComments = function (index) { };
-    PostListComponent.prototype.printComments = function (comments) { };
+    PostListComponent.prototype.getComments = function (index) {
+        var _this = this;
+        this.postService.getCommentsForPost(index).subscribe(function (data) { return _this.comments = data; });
+        console.log(index);
+        console.log(this.comments);
+    };
+    PostListComponent.prototype.printComments = function (comments) {
+        //this.commentsFound.emit(this.comments);
+    };
     return PostListComponent;
 }());
 __decorate([
