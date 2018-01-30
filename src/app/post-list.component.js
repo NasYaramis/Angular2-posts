@@ -22,11 +22,10 @@ var PostListComponent = (function () {
     PostListComponent.prototype.getComments = function (index) {
         var _this = this;
         this.postService.getCommentsForPost(index).subscribe(function (data) { return _this.comments = data; });
-        console.log(index);
-        console.log(this.comments);
+        this.printComments(this.comments);
     };
     PostListComponent.prototype.printComments = function (comments) {
-        //this.commentsFound.emit(this.comments);
+        this.commentsFound.emit(comments);
     };
     return PostListComponent;
 }());

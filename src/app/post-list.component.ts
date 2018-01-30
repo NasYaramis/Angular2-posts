@@ -23,11 +23,10 @@ export class PostListComponent  {
 
    getComments(index: number): void {
      this.postService.getCommentsForPost(index).subscribe(data => this.comments = data);
-     console.log(index);
-     console.log(this.comments);
+     this.printComments(this.comments);
    }
 
    printComments(comments: Comment[]): void {
-     //this.commentsFound.emit(this.comments);
+     this.commentsFound.emit(comments);
    }
 }
